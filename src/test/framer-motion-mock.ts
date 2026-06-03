@@ -55,9 +55,14 @@ const TAGS = [
 ];
 
 export function buildFramerMotionMock() {
+  const elements = Object.fromEntries(TAGS.map((t) => [t, makeEl(t)]));
   return {
-    motion: Object.fromEntries(TAGS.map((t) => [t, makeEl(t)])),
+    motion: elements,
+    m: elements,
     AnimatePresence: ({ children }: React.PropsWithChildren) =>
       React.createElement(React.Fragment, null, children),
+    LazyMotion: ({ children }: React.PropsWithChildren) =>
+      React.createElement(React.Fragment, null, children),
+    domAnimation: {},
   };
 }
