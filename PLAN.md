@@ -199,6 +199,27 @@ All personal data lives here — the AI bot and every UI section pull from this 
 8. Add `og-image.png` and metadata for social sharing
 9. Deploy to Vercel
 
+## Testing Strategy
+Tests are written alongside the code they cover — not as an afterthought.
+
+### Unit tests (Vitest) — `src/lib/*.test.ts`
+- `buildContextFromContent()` serialises all fields correctly
+- Content schema: required fields present, correct types
+- OpenRouter helper: streaming chunks parsed correctly, errors surfaced
+
+### Integration tests (Vitest + MSW or Next.js test helpers) — `src/app/api/**/*.test.ts`
+- `POST /api/chat` returns a streaming response with the correct `Content-Type`
+- System prompt includes bio, skills, projects, and experience from `content.ts`
+- Missing or malformed request body returns `400`
+- OpenRouter error (e.g. 500) is forwarded cleanly
+
+### Feature / E2E tests (Playwright) — `e2e/`
+- Page loads and all six sections are visible
+- Nav links scroll to the correct section
+- Chatbot button opens the panel; a message is sent and a streamed reply appears
+- CV download link resolves to the PDF
+- Mobile viewport: nav collapses to hamburger, layout stacks correctly
+
 ---
 
 ## Stretch Goals (post-MVP)
