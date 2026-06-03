@@ -58,7 +58,19 @@ export default function Experience() {
                         {exp.start} – {exp.end}
                       </span>
                     </div>
-                    <p className="text-sm text-accent mb-4">{exp.company}</p>
+                    <p className="text-sm text-accent mb-3">{exp.company}</p>
+                    {exp.tech.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {exp.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="px-2 py-0.5 rounded-md text-xs bg-accent/10 text-accent border border-accent/20"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     <ul className="space-y-2">
                       {exp.bullets.map((b, j) => (
                         <li key={j} className="flex gap-2 text-sm text-muted">
