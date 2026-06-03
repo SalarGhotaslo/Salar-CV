@@ -3,27 +3,34 @@
 > **Important:** This is Next.js 15 App Router. APIs, conventions, and file structure may differ from training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 
 ## Project
-Personal website for Salar with an AI chatbot. See `PLAN.md` for the full MVP spec and `CLAUDE.MD` for architecture guidance.
+Personal website with a floating AI chatbot. See `PLAN.md` for the full iteration-by-iteration build guide and `CLAUDE.md` for architecture and commands.
 
-## Rules
-- All personal content (bio, skills, projects, experience) lives in `src/lib/content.ts` — never hardcode it in components or the API route
-- Server Components by default; only add `'use client'` for state, effects, or browser APIs
-- The chatbot system prompt is built at request-time from `content.ts` — do not introduce a vector DB or external knowledge store
-- The OpenRouter key is in `.env.local` as `OPENROUTER_API_KEY` — never log or expose it client-side
-- Tailwind design tokens (colours, spacing) are CSS custom properties in `globals.css`, not in `tailwind.config.ts`
+## Non-negotiable rules
+
+- **All personal content lives in `src/lib/content.ts`** — never hardcode it in components, API routes, or metadata. This is the single source of truth.
+- **Never expose `OPENROUTER_API_KEY`** — it lives in `.env.local` only. Do not log it, return it in a response, or import it into any client component.
+- **Server Components by default** — only add `'use client'` when you need state, effects, or browser APIs. The only client components at MVP are `ChatBot.tsx` and `Nav.tsx`.
+- **Design tokens go in `globals.css` only** — CSS custom properties (`--accent`, `--background`, etc.), not in `tailwind.config.ts`.
+- **`npm run test` must pass before any work is considered done** — run it after every non-trivial change.
+
+## Content changes
+
+When updating personal data, edit `src/lib/content.ts` only. If you add a new top-level field, also extend `buildContextFromContent()` in the same file so the chatbot picks it up. Run `npm run test` after.
+
+## Chatbot changes
+
+- API route: `src/app/api/chat/route.ts`
+- Streaming helper: `src/lib/openrouter.ts` — do not call OpenRouter directly from the route
+- Widget: `src/components/ChatBot.tsx`
+- Model is set in `route.ts` — change it there if swapping
 
 ## Testing
-Every non-trivial piece of logic must be covered before it is considered done.
 
-| Layer | Tool | Location | What to cover |
-|---|---|---|---|
-| Unit | Vitest | `src/lib/*.test.ts` | Pure functions — `buildContextFromContent()`, content schema validation, OpenRouter helper |
-| Integration | Vitest + `node-fetch` / `msw` | `src/app/api/**/*.test.ts` | `/api/chat` route — correct system prompt, streaming response, error handling |
-| Feature (E2E) | Playwright | `e2e/` | Critical user flows — page loads, section navigation, chatbot opens and returns a streamed reply |
+| Layer | Tool | Location |
+|---|---|---|
+| Unit | Vitest | `src/lib/*.test.ts` |
+| Integration | Vitest | `src/app/api/**/*.test.ts` |
+| E2E | Playwright | `e2e/` |
 
-Rules:
 - Write tests alongside the code they cover, not after
 - Unit tests must not make real network calls — mock `fetch` at the boundary
-- Integration tests hit the real Next.js route handler (use `createMocks` or the Next.js test helpers)
-- Feature tests run against `npm run dev` (or a preview build) using Playwright
-- `npm run test` (Vitest) must pass before any PR is merged; Playwright tests run in CI on every push

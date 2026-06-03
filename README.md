@@ -1,48 +1,63 @@
-# Salar CV — Personal Website
+# Personal CV Website
 
-A visually striking personal website with a built-in AI chatbot that answers questions about Salar. Built with Next.js 15 App Router, Tailwind CSS v4, and Framer Motion.
+A single-page personal website with a floating AI chatbot that answers questions about the owner in real time. Built with Next.js 15 App Router, Tailwind CSS v4, and Framer Motion.
 
 ## Features
 
 - Single scrollable page: Hero → About → Skills → Projects → Experience → Contact
-- Floating AI chatbot powered by OpenRouter — answers questions about Salar based on `lib/content.ts`
-- Streaming chat responses via `/api/chat`
+- Floating AI chatbot powered by OpenRouter — streams answers about you based on your content file
 - Server Components by default, minimal client-side JS
-- Dark-first design with glass-morphism and animated sections
+- Dark-first design with animated sections and glass-morphism nav
 
-## Tech Stack
+## Tech stack
 
 | Layer | Choice |
 |---|---|
-| Framework | Next.js 15 App Router |
+| Framework | Next.js 15 App Router (TypeScript) |
 | Styling | Tailwind CSS v4 + Framer Motion |
-| Language | TypeScript |
-| AI | OpenRouter API (claude-sonnet-4-5 by default) |
+| AI | OpenRouter API (`claude-sonnet-4-5` by default) |
 | Icons | Lucide React |
 | Fonts | Geist Sans + Geist Mono |
+| Tests | Vitest (unit + integration) |
 | Deployment | Vercel |
 
-## Getting Started
+---
+
+## Using this as a template
+
+To make this site your own, you only need to change two files:
+
+1. **`src/lib/content.ts`** — replace every field with your personal data (name, bio, skills, projects, experience, contact, social links). The AI chatbot, every UI section, and all page metadata are derived from this file automatically.
+2. **`public/Picture_of_me.jpg`** — replace with your own photo (keep the same filename).
+
+Optionally replace `public/Salar_Ghotaslo_CV.pdf` with your own CV PDF.
+
+> If you're rebuilding with Claude Code, see `PLAN.md` — it contains a step-by-step iteration guide. Hand it `CV_content.md` and `Picture_of_me.jpg` and ask it to follow the plan from Iteration 1.
+
+---
+
+## Getting started
 
 **1. Install dependencies**
 ```bash
 npm install
 ```
 
-**2. Set up environment variables**
+**2. Add your OpenRouter API key**
 ```bash
-cp .env.example .env.local
-```
-Add your OpenRouter API key to `.env.local`:
-```
+# create .env.local
 OPENROUTER_API_KEY=your_key_here
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
-**3. Start the dev server**
+**3. Run the dev server**
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000).
+
+---
 
 ## Commands
 
@@ -54,46 +69,44 @@ npm run test       # Vitest unit tests
 npm run test:watch # tests in watch mode
 ```
 
-## Personalising the Content
+---
 
-All personal data (bio, skills, projects, experience, social links) lives in a single file:
-
-```
-src/lib/content.ts
-```
-
-Edit this file to update every section of the site and the AI chatbot's knowledge simultaneously. Never hardcode personal content in components.
-
-## Project Structure
+## Project structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx          # Root layout — fonts, metadata, nav, footer
-│   ├── page.tsx            # Home page
-│   ├── globals.css         # Tailwind base + design tokens
-│   └── api/chat/route.ts   # Streaming AI chat endpoint
+│   ├── layout.tsx            # Root layout — fonts, metadata
+│   ├── page.tsx              # Home page — assembles all sections
+│   ├── globals.css           # Tailwind base + CSS design tokens
+│   └── api/chat/route.ts     # POST /api/chat — streaming AI endpoint
 ├── components/
-│   ├── Nav.tsx             # Sticky, scroll-aware nav
-│   ├── Hero.tsx            # Animated full-viewport hero
-│   ├── About.tsx           # Bio + photo
-│   ├── Skills.tsx          # Tech/skill grid
-│   ├── Projects.tsx        # Project cards
-│   ├── Experience.tsx      # Work timeline
-│   ├── Contact.tsx         # Email + social links
-│   ├── ChatBot.tsx         # Floating chat widget (client)
-│   └── ChatMessage.tsx     # Message bubble
+│   ├── Nav.tsx               # Sticky scroll-aware nav (client)
+│   ├── Hero.tsx              # Full-viewport animated hero
+│   ├── About.tsx             # Bio + photo + quick stats
+│   ├── Skills.tsx            # Tech/skill grid
+│   ├── Projects.tsx          # Project cards with tech tags
+│   ├── Experience.tsx        # Work history timeline
+│   ├── Contact.tsx           # Email, social links, CV download
+│   ├── ChatBot.tsx           # Floating chat widget (client)
+│   └── ChatMessage.tsx       # Message bubble
 └── lib/
-    ├── content.ts          # All personal data (single source of truth)
-    └── openrouter.ts       # Typed OpenRouter streaming helper
+    ├── content.ts            # ★ All personal data lives here ★
+    ├── content.test.ts       # Schema + serialiser tests
+    ├── openrouter.ts         # Typed OpenRouter streaming helper
+    └── openrouter.test.ts    # Streaming helper tests
 ```
+
+---
 
 ## Deployment
 
-Deploy to Vercel with one click or via the CLI:
-
 ```bash
-npx vercel
+vercel login
+vercel --yes                                        # preview deploy
+vercel env add OPENROUTER_API_KEY production        # add API key
+vercel env add NEXT_PUBLIC_BASE_URL production      # add production URL
+vercel --prod                                       # promote to production
 ```
 
-Add `OPENROUTER_API_KEY` as an environment variable in your Vercel project settings.
+After the first deploy, push to `main` and Vercel auto-deploys.
