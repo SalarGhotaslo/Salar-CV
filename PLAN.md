@@ -44,7 +44,8 @@ salar_CV/
 │       ├── content.ts          # All personal data (bio, skills, projects…)
 │       └── openrouter.ts       # Typed OpenRouter streaming helper
 ├── public/
-│   ├── avatar.jpg              # Profile photo
+│   ├── Picture_of_me.jpg       # Profile photo (copy from repo root)
+│   ├── Salar_Ghotaslo_CV.pdf   # CV download (copy from repo root)
 │   └── og-image.png            # Open Graph image for social sharing
 ├── .env.local                  # OPENROUTER_API_KEY (already exists as .env)
 ├── next.config.ts
@@ -81,6 +82,7 @@ The site is a single scrollable page (SPA feel) with anchor-based navigation —
 
 ### 3. About
 - Two-column layout: photo left, bio right (stacks on mobile)
+- Photo: `public/Picture_of_me.jpg` (sourced from `Picture_of_me.jpg` in repo root)
 - 2–3 short paragraphs on who you are, what you do, what you care about
 - Quick-stats row: years of experience, projects shipped, tech used
 
@@ -101,6 +103,7 @@ The site is a single scrollable page (SPA feel) with anchor-based navigation —
 
 ### 7. Contact
 - Minimal section: one-liner CTA, email button, social icon row (GitHub, LinkedIn, Twitter/X)
+- CV download button linking to `public/Salar_Ghotaslo_CV.pdf` (sourced from `Salar Ghotaslo CV.pdf` in repo root)
 - No backend form needed for MVP — mailto link is sufficient
 
 ### 8. AI Chatbot (Floating Widget)
@@ -187,13 +190,14 @@ All personal data lives here — the AI bot and every UI section pull from this 
 
 ## Build Order (recommended implementation sequence)
 1. `npx create-next-app@latest` — scaffold project with TypeScript + Tailwind
-2. Populate `lib/content.ts` with real personal data
-3. Build static sections: Hero → About → Skills → Projects → Experience → Contact
-4. Wire up `/api/chat` route with OpenRouter streaming
-5. Build `ChatBot.tsx` floating widget
-6. Polish animations and mobile layout
-7. Add `og-image.png` and metadata for social sharing
-8. Deploy to Vercel
+2. Copy `Picture_of_me.jpg` and `Salar Ghotaslo CV.pdf` from repo root into `public/` (rename CV to `Salar_Ghotaslo_CV.pdf` to avoid URL spaces)
+3. Populate `lib/content.ts` with real personal data
+4. Build static sections: Hero → About → Skills → Projects → Experience → Contact
+5. Wire up `/api/chat` route with OpenRouter streaming
+6. Build `ChatBot.tsx` floating widget
+7. Polish animations and mobile layout
+8. Add `og-image.png` and metadata for social sharing
+9. Deploy to Vercel
 
 ---
 
@@ -203,4 +207,3 @@ All personal data lives here — the AI bot and every UI section pull from this 
 - Contact form with email delivery (Resend API)
 - Project case-study detail pages
 - Analytics (Vercel Analytics, free tier)
-- CV/resume PDF download button
