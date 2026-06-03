@@ -1,0 +1,51 @@
+@reference "../../app/globals.css";
+
+.section {
+  @apply py-24 px-6 scroll-mt-20;
+}
+
+.container {
+  @apply max-w-2xl mx-auto text-center;
+}
+
+.eyebrow {
+  @apply text-sm uppercase tracking-widest text-accent mb-2;
+}
+
+.heading {
+  @apply text-3xl md:text-4xl font-bold text-fg mb-4;
+}
+
+.subtext {
+  @apply text-muted mb-10;
+}
+
+.buttons {
+  @apply flex flex-col sm:flex-row gap-4 justify-center mb-10;
+}
+
+.primaryBtn {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white font-medium transition-all;
+}
+.primaryBtn:hover {
+  @apply bg-accent/90;
+  box-shadow: 0 0 24px rgba(124, 106, 255, 0.4);
+}
+
+.secondaryBtn {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-full border border-subtle text-fg font-medium transition-all;
+}
+.secondaryBtn:hover {
+  @apply border-accent/50 bg-surface;
+}
+
+.socials {
+  @apply flex justify-center gap-4;
+}
+
+.socialLink {
+  @apply p-3 rounded-xl border border-subtle text-muted transition-all;
+}
+.socialLink:hover {
+  @apply text-fg border-accent/40;
+}

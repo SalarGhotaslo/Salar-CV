@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { content } from '@/lib/content'
+import styles from './Skills.module.css'
 
 const container = {
   hidden: {},
@@ -15,10 +16,10 @@ const item = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-surface scroll-mt-20">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className={styles.section}>
+      <div className={styles.container}>
         <motion.p
-          className="text-sm uppercase tracking-widest text-accent mb-2"
+          className={styles.eyebrow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -27,7 +28,7 @@ export default function Skills() {
           Skills
         </motion.p>
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-fg mb-16"
+          className={styles.heading}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,29 +37,20 @@ export default function Skills() {
           What I work with
         </motion.h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className={styles.grid}>
           {content.skills.map((group) => (
             <div key={group.category}>
-              <h3 className="text-xs uppercase tracking-widest text-muted mb-4">
-                {group.category}
-              </h3>
+              <h3 className={styles.categoryTitle}>{group.category}</h3>
               <motion.ul
-                className="space-y-2"
+                className={styles.list}
                 variants={container}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
                 {group.items.map((skill) => (
-                  <motion.li
-                    key={skill}
-                    variants={item}
-                    className="flex items-center gap-2 px-3 py-2 rounded-lg bg-background border border-subtle text-sm text-fg hover:border-accent/40 transition-colors"
-                  >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ background: 'var(--accent)' }}
-                    />
+                  <motion.li key={skill} variants={item} className={styles.item}>
+                    <span className={styles.dot} />
                     {skill}
                   </motion.li>
                 ))}

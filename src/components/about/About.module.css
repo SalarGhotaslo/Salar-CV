@@ -1,0 +1,68 @@
+@reference "../../app/globals.css";
+
+.section {
+  @apply py-24 px-6 scroll-mt-20;
+}
+
+.container {
+  @apply max-w-6xl mx-auto;
+}
+
+.eyebrow {
+  @apply text-sm uppercase tracking-widest text-accent mb-2;
+}
+
+.heading {
+  @apply text-3xl md:text-4xl font-bold text-fg mb-16;
+}
+
+.grid {
+  @apply grid md:grid-cols-2 gap-12 items-center;
+}
+
+.photoWrap {
+  @apply flex justify-center md:justify-start;
+}
+
+.photoFrame {
+  @apply relative w-full max-w-sm;
+}
+
+.photoGlow {
+  @apply absolute -inset-1 rounded-2xl blur-sm opacity-40;
+  background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+}
+
+.photoBox {
+  @apply relative rounded-2xl overflow-hidden w-full;
+  aspect-ratio: 1080 / 1853;
+}
+
+.photo {
+  @apply object-cover;
+  object-position: center bottom;
+}
+
+.bio {
+  @apply space-y-4 mb-10;
+}
+
+.bioPara {
+  @apply text-muted leading-relaxed;
+}
+
+.stats {
+  @apply grid grid-cols-3 gap-4;
+}
+
+.statCard {
+  @apply bg-surface border border-subtle rounded-xl p-4 text-center;
+}
+
+.statValue {
+  @apply text-3xl font-bold text-accent mb-1;
+}
+
+.statLabel {
+  @apply text-xs text-muted;
+}

@@ -1,0 +1,105 @@
+@reference "../../app/globals.css";
+
+.section {
+  @apply py-24 px-6 scroll-mt-20;
+}
+
+.container {
+  @apply max-w-6xl mx-auto;
+}
+
+.eyebrow {
+  @apply text-sm uppercase tracking-widest text-accent mb-2;
+}
+
+.heading {
+  @apply text-3xl md:text-4xl font-bold text-fg mb-16;
+}
+
+.list {
+  @apply space-y-6;
+}
+
+/* Featured card */
+.featuredCard {
+  @apply bg-surface border border-subtle rounded-2xl p-8 transition-colors;
+}
+.featuredCard:hover {
+  @apply border-accent/30;
+}
+
+.featuredHeader {
+  @apply flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4;
+}
+
+.featuredBadge {
+  @apply text-xs uppercase tracking-widest text-accent mb-2 block;
+}
+
+.cardTitle {
+  @apply text-xl font-semibold text-fg transition-colors;
+}
+.featuredCard:hover .cardTitle {
+  @apply text-accent;
+}
+
+.cardLinks {
+  @apply flex gap-3 shrink-0;
+}
+
+.iconLink {
+  @apply p-2 rounded-lg border border-subtle text-muted transition-all;
+}
+.iconLink:hover {
+  @apply text-fg border-accent/40;
+}
+
+.cardDesc {
+  @apply text-muted mb-5 leading-relaxed;
+}
+
+.techList {
+  @apply flex flex-wrap gap-2;
+}
+
+.techTag {
+  @apply text-xs px-2.5 py-1 rounded-full border border-subtle text-muted;
+}
+
+/* Grid of other cards */
+.grid {
+  @apply grid sm:grid-cols-2 gap-6;
+}
+
+.card {
+  @apply bg-surface border border-subtle rounded-2xl p-6 transition-colors;
+}
+.card:hover {
+  @apply border-accent/30;
+}
+
+.cardHeader {
+  @apply flex items-start justify-between gap-4 mb-3;
+}
+
+.cardSmallTitle {
+  @apply text-lg font-semibold text-fg transition-colors;
+}
+.card:hover .cardSmallTitle {
+  @apply text-accent;
+}
+
+.cardSmallLinks {
+  @apply flex gap-2 shrink-0;
+}
+
+.cardSmallLink {
+  @apply text-muted transition-colors;
+}
+.cardSmallLink:hover {
+  @apply text-fg;
+}
+
+.cardSmallDesc {
+  @apply text-muted text-sm mb-4 leading-relaxed;
+}

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { content } from '@/lib/content'
+import styles from './About.module.css'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -17,10 +18,10 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-24 px-6 scroll-mt-20">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className={styles.section}>
+      <div className={styles.container}>
         <motion.p
-          className="text-sm uppercase tracking-widest text-accent mb-2"
+          className={styles.eyebrow}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -29,7 +30,7 @@ export default function About() {
           About
         </motion.p>
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-fg mb-16"
+          className={styles.heading}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -38,60 +39,47 @@ export default function About() {
           Who I am
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Photo */}
+        <div className={styles.grid}>
           <motion.div
-            className="flex justify-center md:justify-start"
+            className={styles.photoWrap}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="relative w-full max-w-sm">
-              <div
-                className="absolute -inset-1 rounded-2xl blur-sm opacity-40"
-                style={{ background: 'linear-gradient(135deg, var(--accent), var(--accent-glow))' }}
-              />
-              <div
-                className="relative rounded-2xl overflow-hidden w-full"
-                style={{ aspectRatio: '1080 / 1853' }}
-              >
+            <div className={styles.photoFrame}>
+              <div className={styles.photoGlow} />
+              <div className={styles.photoBox}>
                 <Image
                   src="/Picture_of_me.jpg"
                   alt={content.name}
                   fill
-                  className="object-cover"
-                  style={{ objectPosition: 'center bottom' }}
+                  className={styles.photo}
                   priority
                 />
               </div>
             </div>
           </motion.div>
 
-          {/* Bio */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="space-y-4 mb-10">
+            <div className={styles.bio}>
               {content.bio.map((para, i) => (
-                <p key={i} className="text-muted leading-relaxed">
+                <p key={i} className={styles.bioPara}>
                   {para}
                 </p>
               ))}
             </div>
 
-            {/* Quick stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className={styles.stats}>
               {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="bg-surface border border-subtle rounded-xl p-4 text-center"
-                >
-                  <p className="text-3xl font-bold text-accent mb-1">{s.value}+</p>
-                  <p className="text-xs text-muted">{s.label}</p>
+                <div key={s.label} className={styles.statCard}>
+                  <p className={styles.statValue}>{s.value}+</p>
+                  <p className={styles.statLabel}>{s.label}</p>
                 </div>
               ))}
             </div>

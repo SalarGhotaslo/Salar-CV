@@ -1,0 +1,125 @@
+@reference "../../app/globals.css";
+
+.toggleBtn {
+  @apply fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-accent text-white shadow-lg flex items-center justify-center transition-all;
+}
+.toggleBtn:hover {
+  @apply bg-accent/90;
+  box-shadow: 0 0 28px rgba(124, 106, 255, 0.55);
+}
+
+.panel {
+  @apply fixed bottom-24 right-6 z-50 flex flex-col bg-surface border border-subtle rounded-2xl shadow-2xl overflow-hidden;
+  width: calc(100vw - 3rem);
+  max-width: 380px;
+  height: 520px;
+}
+
+.header {
+  @apply px-5 py-4 border-b border-subtle flex items-center gap-3 shrink-0;
+}
+
+.statusDot {
+  @apply w-2 h-2 rounded-full bg-accent animate-pulse;
+}
+
+.headerTitle {
+  @apply text-sm font-semibold text-fg;
+}
+
+.headerSub {
+  @apply text-xs text-muted;
+}
+
+.messages {
+  @apply flex-1 overflow-y-auto px-4 py-4 space-y-3;
+}
+
+.emptyState {
+  @apply space-y-3;
+}
+
+.emptyText {
+  @apply text-sm text-muted text-center pt-2;
+}
+
+.starters {
+  @apply space-y-2 pt-1;
+}
+
+.starterBtn {
+  @apply w-full text-left text-sm px-4 py-2.5 rounded-xl border border-subtle text-muted transition-all;
+}
+.starterBtn:hover {
+  @apply border-accent/40 text-fg;
+}
+
+.messageRow {
+  @apply flex;
+}
+
+.messageRowUser {
+  @apply justify-end;
+}
+
+.messageRowAssistant {
+  @apply justify-start;
+}
+
+.bubble {
+  @apply max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed;
+}
+
+.bubbleUser {
+  @apply bg-accent text-white;
+  border-bottom-right-radius: 4px;
+}
+
+.bubbleAssistant {
+  @apply bg-background border border-subtle text-fg;
+  border-bottom-left-radius: 4px;
+}
+
+.dotLoader {
+  @apply flex gap-1 items-center;
+  height: 1rem;
+}
+
+.dot {
+  @apply w-1.5 h-1.5 rounded-full bg-muted animate-bounce;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.inputBar {
+  @apply px-4 py-3 border-t border-subtle flex gap-2 shrink-0;
+}
+
+.input {
+  @apply flex-1 bg-background border border-subtle rounded-xl px-4 py-2 text-sm text-fg transition-colors;
+}
+.input::placeholder {
+  @apply text-muted;
+}
+.input:focus {
+  @apply outline-none border-accent/50;
+}
+.input:disabled {
+  @apply opacity-50;
+}
+
+.sendBtn {
+  @apply w-9 h-9 rounded-xl bg-accent text-white flex items-center justify-center transition-all shrink-0;
+}
+.sendBtn:hover {
+  @apply bg-accent/90;
+}
+.sendBtn:disabled {
+  @apply opacity-40 cursor-not-allowed;
+}

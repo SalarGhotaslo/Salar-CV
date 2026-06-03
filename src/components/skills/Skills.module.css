@@ -1,0 +1,41 @@
+@reference "../../app/globals.css";
+
+.section {
+  @apply py-24 px-6 bg-surface scroll-mt-20;
+}
+
+.container {
+  @apply max-w-6xl mx-auto;
+}
+
+.eyebrow {
+  @apply text-sm uppercase tracking-widest text-accent mb-2;
+}
+
+.heading {
+  @apply text-3xl md:text-4xl font-bold text-fg mb-16;
+}
+
+.grid {
+  @apply grid sm:grid-cols-2 lg:grid-cols-4 gap-8;
+}
+
+.categoryTitle {
+  @apply text-xs uppercase tracking-widest text-muted mb-4;
+}
+
+.list {
+  @apply space-y-2;
+}
+
+.item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-lg bg-background border border-subtle text-sm text-fg transition-colors;
+}
+.item:hover {
+  @apply border-accent/40;
+}
+
+.dot {
+  @apply w-1.5 h-1.5 rounded-full flex-shrink-0;
+  background: var(--accent);
+}
