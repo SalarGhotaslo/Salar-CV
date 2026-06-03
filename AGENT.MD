@@ -24,6 +24,19 @@ When updating personal data, edit `src/lib/content.ts` only. If you add a new to
 - Widget: `src/components/ChatBot.tsx`
 - Model is set in `route.ts` — change it there if swapping
 
+## Security rules — do not remove or weaken these
+
+| Protection | Where | Rule |
+|---|---|---|
+| API key | `src/lib/openrouter.ts` | `OPENROUTER_API_KEY` is read server-side only; never import or log it in client code |
+| System prompt injection | `src/app/api/chat/route.ts` | Strip any message where `role === "system"` from user-supplied payloads before forwarding |
+| Input size | `src/app/api/chat/route.ts` | Max 20 messages per request; each message truncated at 2000 chars |
+| Rate limiting | `src/app/api/chat/route.ts` | 15 requests per IP per hour via in-memory map; do not remove |
+| Token cost cap | `src/lib/openrouter.ts` | `max_tokens: 500` on every request; do not remove |
+| Error leakage | `src/lib/openrouter.ts` + `route.ts` | Log full error server-side (`console.error`); return only a generic message to the client |
+| HTTP headers | `next.config.ts` | `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` set globally |
+| History size | `src/components/ChatBot.tsx` | Only the last 10 messages are sent per request; do not increase without justification |
+
 ## Testing
 
 | Layer | Tool | Location |

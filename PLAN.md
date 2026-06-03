@@ -257,6 +257,31 @@ Rules:
 
 ---
 
+## Iteration 8b — Security hardening
+
+> Run this before deploying. These protections are already implemented in the codebase — this iteration is a checklist to verify they are in place and to complete the one step that requires a human action.
+
+**Human action required:**
+- Store your API key in `.env.local` (not `.env`) — the plain `.env` name is commonly committed by mistake
+- Set a monthly spending cap in your OpenRouter dashboard as a secondary safety net
+
+**Verify the following are present in code (do not remove them):**
+
+| Protection | File | What to check |
+|---|---|---|
+| API key server-only | `src/lib/openrouter.ts` | `OPENROUTER_API_KEY` read from `process.env` only, never exported or logged |
+| Prompt injection defence | `src/app/api/chat/route.ts` | Messages with `role === "system"` are stripped from the user payload |
+| Input size limits | `src/app/api/chat/route.ts` | Max 20 messages, 2000 chars per message |
+| Rate limiting | `src/app/api/chat/route.ts` | 15 requests per IP per hour |
+| Token cost cap | `src/lib/openrouter.ts` | `max_tokens: 500` in the request body |
+| Error leakage | `src/lib/openrouter.ts` + `route.ts` | Full error logged server-side; generic message returned to client |
+| HTTP headers | `next.config.ts` | `headers()` block sets `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` |
+| Bounded history | `src/components/ChatBot.tsx` | Only last 10 messages sent per request |
+
+**Done when:** all items above are confirmed present and `.env.local` contains the API key.
+
+---
+
 ## Iteration 9 — Deploy
 
 **Goal:** live production URL on Vercel.

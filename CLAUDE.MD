@@ -59,3 +59,18 @@ Tailwind CSS v4 + Framer Motion. Design tokens are CSS custom properties in `src
 - Add tests in `src/lib/*.test.ts` alongside any new utility function
 - `npm run test` must pass before any deploy or PR merge
 - Unit tests must not make real network calls — mock `fetch` at the boundary
+
+## Security constraints
+
+These protections are in place and must not be removed or weakened:
+
+- `OPENROUTER_API_KEY` lives in `.env.local` only — never in client code, never logged
+- `/api/chat` strips `role: "system"` from any user-supplied messages (prompt injection defence)
+- `/api/chat` enforces a 20-message / 2000-char-per-message limit on incoming payloads
+- `openrouter.ts` sets `max_tokens: 500` on every request to cap per-call cost
+- Rate limiter: 15 requests per IP per hour (`route.ts`)
+- OpenRouter errors are logged server-side only; the client receives a generic message
+- HTTP security headers are set in `next.config.ts` — do not remove the `headers()` block
+- `ChatBot.tsx` sends only the last 10 messages per request to keep payloads bounded
+
+See `AGENT.MD` for the full table.

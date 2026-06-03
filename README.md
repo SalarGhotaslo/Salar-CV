@@ -99,6 +99,22 @@ src/
 
 ---
 
+## Security
+
+The following protections are built into the codebase:
+
+- **API key** — `OPENROUTER_API_KEY` is server-side only; never exposed to the browser
+- **Prompt injection** — user-supplied `role: "system"` messages are stripped before reaching the model
+- **Input limits** — max 20 messages per request, 2000 chars per message
+- **Rate limiting** — 15 requests per IP per hour (best-effort; resets on serverless cold start)
+- **Token cap** — `max_tokens: 500` on every OpenRouter request to bound per-call cost
+- **HTTP headers** — `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, and `Permissions-Policy` set globally
+- **Error safety** — OpenRouter errors are logged server-side only; the browser receives a generic message
+
+**Before going public:** store your API key in `.env.local` (not `.env`) and set a monthly spending cap in your OpenRouter dashboard.
+
+---
+
 ## Deployment
 
 ```bash
