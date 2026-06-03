@@ -14,9 +14,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_BASE_URL)
+  : new URL('http://localhost:3000')
+
 export const metadata: Metadata = {
+  metadataBase: baseUrl,
   title: `${content.name} — ${content.role}`,
   description: content.bio[0],
+  keywords: [
+    'Front End Engineer',
+    'Live Service Lead',
+    'React',
+    'TypeScript',
+    'Next.js',
+    'London',
+    content.name,
+  ],
+  authors: [{ name: content.name, url: content.social.linkedin ?? undefined }],
+  openGraph: {
+    type: 'website',
+    url: baseUrl,
+    siteName: content.name,
+    title: `${content.name} — ${content.role}`,
+    description: content.bio[0],
+    locale: 'en_GB',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${content.name} — ${content.role}`,
+    description: content.bio[0],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

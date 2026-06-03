@@ -50,12 +50,12 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
+          {/* <a
             href={`mailto:${content.email}`}
             className="text-sm px-4 py-1.5 rounded-full border border-accent text-accent hover:bg-accent hover:text-white transition-all"
           >
             Hire me
-          </a>
+          </a> */}
         </div>
 
         {/* Animated hamburger */}
@@ -106,13 +106,13 @@ export default function Nav() {
                   {l.label}
                 </a>
               ))}
-              <a
+              {/* <a
                 href={`mailto:${content.email}`}
                 className="text-sm text-accent font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 Hire me
-              </a>
+              </a> */}
             </div>
           </motion.div>
         )}
