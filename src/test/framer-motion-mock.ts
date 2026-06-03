@@ -36,7 +36,7 @@ const makeEl = (tag: string) =>
     React.createElement(
       tag,
       { ...omitMotionProps(props), ref },
-      children
+      children as React.ReactNode
     )
   );
 

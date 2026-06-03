@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { content } from '@/lib/content'
 import styles from './About.module.css'
 
@@ -20,7 +20,7 @@ export default function About() {
   return (
     <section id="about" className={styles.section}>
       <div className={styles.container}>
-        <motion.p
+        <m.p
           className={styles.eyebrow}
           initial="hidden"
           whileInView="visible"
@@ -28,8 +28,8 @@ export default function About() {
           variants={fadeUp}
         >
           About
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className={styles.heading}
           initial="hidden"
           whileInView="visible"
@@ -37,10 +37,10 @@ export default function About() {
           variants={fadeUp}
         >
           Who I am
-        </motion.h2>
+        </m.h2>
 
         <div className={styles.grid}>
-          <motion.div
+          <m.div
             className={styles.photoWrap}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,9 +59,9 @@ export default function About() {
                 />
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -83,7 +83,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

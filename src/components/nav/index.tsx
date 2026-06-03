@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { content } from '@/lib/content'
 import styles from './Nav.module.css'
 
@@ -57,7 +57,7 @@ export default function Nav() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <m.div
             key="mobile-menu"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -77,7 +77,7 @@ export default function Nav() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </nav>

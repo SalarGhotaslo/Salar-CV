@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import { content } from '@/lib/content'
 import { GitHubIcon } from '@/components/icons'
@@ -13,7 +13,7 @@ export default function Projects() {
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.container}>
-        <motion.p
+        <m.p
           className={styles.eyebrow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -21,8 +21,8 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
         >
           Projects
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className={styles.heading}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,11 +30,11 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           Things I&apos;ve built
-        </motion.h2>
+        </m.h2>
 
         <div className={styles.list}>
           {featured.map((p, i) => (
-            <motion.div
+            <m.div
               key={p.name}
               className={styles.featuredCard}
               initial={{ opacity: 0, y: 24 }}
@@ -80,13 +80,13 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           ))}
 
           {rest.length > 0 && (
             <div className={styles.grid}>
               {rest.map((p, i) => (
-                <motion.div
+                <m.div
                   key={p.name}
                   className={styles.card}
                   initial={{ opacity: 0, y: 24 }}
@@ -129,7 +129,7 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           )}

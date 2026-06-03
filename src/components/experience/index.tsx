@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { content } from '@/lib/content'
 import styles from './Experience.module.css'
 
@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <section id="experience" className={styles.section}>
       <div className={styles.container}>
-        <motion.p
+        <m.p
           className={styles.eyebrow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -16,8 +16,8 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
         >
           Experience
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className={styles.heading}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function Experience() {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           Where I&apos;ve worked
-        </motion.h2>
+        </m.h2>
 
         <div className={styles.timeline}>
           <div className={styles.timelineLine} />
@@ -34,7 +34,7 @@ export default function Experience() {
             {content.experience.map((exp, i) => {
               const isEven = i % 2 === 0
               return (
-                <motion.div
+                <m.div
                   key={`${exp.company}-${i}`}
                   className={`${styles.entry} ${isEven ? '' : 'md:flex-row-reverse'}`}
                   initial={{ opacity: 0, y: 30 }}
@@ -71,7 +71,7 @@ export default function Experience() {
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </m.div>
               )
             })}
           </div>

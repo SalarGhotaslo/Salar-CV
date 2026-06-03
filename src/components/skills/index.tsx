@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { content } from '@/lib/content'
 import styles from './Skills.module.css'
 
@@ -18,7 +18,7 @@ export default function Skills() {
   return (
     <section id="skills" className={styles.section}>
       <div className={styles.container}>
-        <motion.p
+        <m.p
           className={styles.eyebrow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,8 +26,8 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
         >
           Skills
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className={styles.heading}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,13 +35,13 @@ export default function Skills() {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           What I work with
-        </motion.h2>
+        </m.h2>
 
         <div className={styles.grid}>
           {content.skills.map((group) => (
             <div key={group.category}>
               <h3 className={styles.categoryTitle}>{group.category}</h3>
-              <motion.ul
+              <m.ul
                 className={styles.list}
                 variants={container}
                 initial="hidden"
@@ -49,12 +49,12 @@ export default function Skills() {
                 viewport={{ once: true }}
               >
                 {group.items.map((skill) => (
-                  <motion.li key={skill} variants={item} className={styles.item}>
+                  <m.li key={skill} variants={item} className={styles.item}>
                     <span className={styles.dot} />
                     {skill}
-                  </motion.li>
+                  </m.li>
                 ))}
-              </motion.ul>
+              </m.ul>
             </div>
           ))}
         </div>

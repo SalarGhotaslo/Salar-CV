@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LazyMotion, domAnimation } from "framer-motion";
 import "./globals.css";
 import Nav from "@/components/nav";
 import ChatBot from "@/components/chatbot";
@@ -63,9 +64,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-fg">
-        <Nav />
-        {children}
-        <ChatBot />
+        <LazyMotion features={domAnimation}>
+          <Nav />
+          {children}
+          <ChatBot />
+        </LazyMotion>
       </body>
     </html>
   );

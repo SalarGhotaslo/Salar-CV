@@ -1,7 +1,7 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Mail, Download } from 'lucide-react'
 import { content } from '@/lib/content'
 import { GitHubIcon, LinkedInIcon, XIcon } from '@/components/icons'
@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <section id="contact" className={styles.section}>
       <div className={styles.container}>
-        <motion.p
+        <m.p
           className={styles.eyebrow}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,8 +39,8 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           Contact
-        </motion.p>
-        <motion.h2
+        </m.p>
+        <m.h2
           className={styles.heading}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,8 +48,8 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           Get in touch
-        </motion.h2>
-        <motion.p
+        </m.h2>
+        <m.p
           className={styles.subtext}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,9 +58,9 @@ export default function Contact() {
         >
           I&apos;m open to new opportunities. Whether you have a question, a project, or just want
           to say hello — my inbox is always open.
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           className={styles.buttons}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,10 +75,10 @@ export default function Contact() {
             <Download size={16} />
             Download CV
           </a>
-        </motion.div>
+        </m.div>
 
         {socials.length > 0 && (
-          <motion.div
+          <m.div
             className={styles.socials}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -97,7 +97,7 @@ export default function Contact() {
                 <Icon />
               </a>
             ))}
-          </motion.div>
+          </m.div>
         )}
       </div>
     </section>

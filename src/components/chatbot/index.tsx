@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send } from 'lucide-react'
 import { parseSSEChunk } from '@/lib/openrouter'
 import styles from './ChatBot.module.css'
@@ -87,7 +87,7 @@ export default function ChatBot() {
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
-            <motion.span
+            <m.span
               key="x"
               initial={{ rotate: -90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
@@ -95,9 +95,9 @@ export default function ChatBot() {
               transition={{ duration: 0.15 }}
             >
               <X size={22} />
-            </motion.span>
+            </m.span>
           ) : (
-            <motion.span
+            <m.span
               key="chat"
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
@@ -105,14 +105,14 @@ export default function ChatBot() {
               transition={{ duration: 0.15 }}
             >
               <MessageCircle size={22} />
-            </motion.span>
+            </m.span>
           )}
         </AnimatePresence>
       </button>
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             key="panel"
             initial={{ opacity: 0, y: 16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -200,7 +200,7 @@ export default function ChatBot() {
                 <Send size={15} />
               </button>
             </form>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>
