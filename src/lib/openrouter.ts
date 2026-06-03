@@ -33,12 +33,14 @@ export async function streamChatCompletion(
       messages,
       stream: true,
       temperature: options.temperature ?? 0.7,
+      max_tokens: 500,
     }),
   });
 
   if (!response.ok) {
     const body = await response.text();
-    throw new Error(`OpenRouter error ${response.status}: ${body}`);
+    console.error(`[openrouter] error ${response.status}: ${body}`);
+    throw new Error(`OpenRouter request failed with status ${response.status}`);
   }
 
   if (!response.body) {

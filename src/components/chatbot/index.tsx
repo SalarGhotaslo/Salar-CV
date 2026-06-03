@@ -45,6 +45,7 @@ export default function ChatBot() {
     const userMsg: Message = { role: 'user', content: text.trim() }
     const history = [...messages, userMsg]
     setMessages([...history, { role: 'assistant', content: '' }])
+    const trimmedHistory = history.slice(-10)
     setInput('')
     setStreaming(true)
 
@@ -52,7 +53,7 @@ export default function ChatBot() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
+        body: JSON.stringify({ messages: trimmedHistory }),
       })
 
       if (!res.ok || !res.body) throw new Error('Request failed')
