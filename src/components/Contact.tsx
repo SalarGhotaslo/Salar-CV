@@ -30,7 +30,7 @@ export default function Contact() {
   ].filter(Boolean) as { href: string; Icon: () => React.JSX.Element; label: string }[]
 
   return (
-    <section id="contact" className="py-24 px-6">
+    <section id="contact" className="py-24 px-6 scroll-mt-20">
       <div className="max-w-2xl mx-auto text-center">
         <motion.p
           className="text-sm uppercase tracking-widest text-accent mb-2"

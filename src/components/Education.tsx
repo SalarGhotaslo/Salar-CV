@@ -5,7 +5,7 @@ import { content } from '@/lib/content'
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 px-6">
+    <section id="education" className="py-24 px-6 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.p
           className="text-sm uppercase tracking-widest text-accent mb-2"

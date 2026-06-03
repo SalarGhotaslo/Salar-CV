@@ -15,7 +15,7 @@ const item = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-surface">
+    <section id="skills" className="py-24 px-6 bg-surface scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.p
           className="text-sm uppercase tracking-widest text-accent mb-2"

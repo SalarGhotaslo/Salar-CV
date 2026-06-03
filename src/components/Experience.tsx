@@ -5,7 +5,7 @@ import { content } from '@/lib/content'
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6 bg-surface">
+    <section id="experience" className="py-24 px-6 bg-surface scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <motion.p
           className="text-sm uppercase tracking-widest text-accent mb-2"
