@@ -34,6 +34,14 @@ export const content = {
   ],
   projects: [
     {
+      name: "Enterprise Public-Sector Platforms",
+      description: "Across my career I have contributed to and led development on multiple large-scale public-sector web products — full-stack systems that serve high-volume citizen-facing traffic and are held to strict government standards. Work spanned feature delivery, accessibility compliance, rigorous end-to-end and regression testing, security hardening, and the design of robust CI/CD pipelines to ensure safe, auditable releases.",
+      tech: ["React", "TypeScript", "GraphQL", "Node.js", "Jenkins", "GitHub Actions", "Kubernetes", "Docker", "Cypress", "Jest"],
+      github: null,
+      live: null,
+      featured: true,
+    },
+    {
       name: "Personal CV Website (this site)",
       description: "A single-page personal site with an AI chatbot that answers questions about me in real time, built with Next.js 15 App Router and a streaming OpenRouter integration.",
       tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Framer Motion", "OpenRouter"],
