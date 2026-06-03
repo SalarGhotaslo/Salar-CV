@@ -197,7 +197,13 @@ All personal data lives here — the AI bot and every UI section pull from this 
 6. Build `ChatBot.tsx` floating widget
 7. Polish animations and mobile layout
 8. Add `og-image.png` and metadata for social sharing
-9. Deploy to Vercel
+9. Final pre-deploy review — check email/phone visibility, confirm content is ready to be public
+10. Deploy to Vercel
+    - `vercel login` (one-time auth)
+    - `vercel --yes` (first deploy / preview)
+    - `vercel env add OPENROUTER_API_KEY production` (paste the key from `.env`)
+    - `vercel env add NEXT_PUBLIC_BASE_URL production` (paste the Vercel domain URL)
+    - `vercel --prod` (promote to production)
 
 ## Testing Strategy
 Tests are written alongside the code they cover — not as an afterthought.
