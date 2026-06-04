@@ -24,11 +24,26 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+function getSecretContext(): string {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const mod = require("@/lib/secret-content") as { buildSecretContext?: () => string };
+    return mod.buildSecretContext?.() ?? "";
+  } catch {
+    return "";
+  }
+}
+
 function buildSystemPrompt(): string {
-  return `You are an AI assistant on Salar's personal website. Answer questions about Salar based only on the facts below. Be friendly, concise, and professional. If asked something you don't know, say so honestly.
+  const secretContext = getSecretContext();
+  const secretSection = secretContext
+    ? `\n\n--- PERSONAL BACKGROUND ---\n${secretContext}`
+    : "";
+
+  return `You are an AI assistant on Salar's personal website. Answer questions about Salar based only on the facts below. Be friendly, concise, and professional. If asked something you don't know, say so honestly. Write in plain text only — no markdown, no bullet symbols, no asterisks, no hyphens as list markers. Use short paragraphs or natural line breaks to separate ideas.
 
 --- FACTS ---
-${buildContextFromContent()}`;
+${buildContextFromContent()}${secretSection}`;
 }
 
 export async function POST(request: NextRequest) {

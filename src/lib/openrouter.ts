@@ -9,7 +9,7 @@ export interface OpenRouterOptions {
 }
 
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
-const DEFAULT_MODEL = "google/gemma-4-31b-it:free";
+const DEFAULT_MODEL = "nvidia/nemotron-nano-9b-v2:free";
 
 export async function streamChatCompletion(
   messages: ChatMessage[],

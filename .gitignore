@@ -42,3 +42,6 @@ next-env.d.ts
 
 # extras
 CODE_REVIEW.md
+
+# private personal context — never commit
+src/lib/secret-content.ts

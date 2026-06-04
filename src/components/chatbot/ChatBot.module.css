@@ -68,6 +68,7 @@
 
 .bubble {
   @apply max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed;
+  white-space: pre-wrap;
 }
 
 .bubbleUser {
