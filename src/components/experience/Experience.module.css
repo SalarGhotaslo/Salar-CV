@@ -56,10 +56,12 @@
 }
 
 .card {
-  @apply ml-6 md:ml-0 md:w-1/2 bg-background border border-subtle rounded-2xl p-6 transition-colors;
+  @apply ml-6 md:ml-0 md:w-1/2 bg-background border border-subtle rounded-2xl p-6 transition-all;
 }
 .card:hover {
   @apply border-accent/30;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cardHeader {

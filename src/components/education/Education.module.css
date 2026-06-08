@@ -21,10 +21,12 @@
 }
 
 .card {
-  @apply bg-surface border border-subtle rounded-2xl p-6 transition-colors;
+  @apply bg-surface border border-subtle rounded-2xl p-6 transition-all;
 }
 .card:hover {
   @apply border-accent/30;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cardHeader {

@@ -24,10 +24,10 @@ describe("Projects", () => {
 
   it("renders all tech tags for each project", () => {
     render(<Projects />);
-    for (const project of content.projects) {
-      for (const tech of project.tech) {
-        expect(screen.getByText(tech)).toBeInTheDocument();
-      }
+    const allTech = content.projects.flatMap((p) => p.tech);
+    const uniqueTech = [...new Set(allTech)];
+    for (const tech of uniqueTech) {
+      expect(screen.getAllByText(tech).length).toBeGreaterThanOrEqual(1);
     }
   });
 
@@ -38,24 +38,18 @@ describe("Projects", () => {
     }
   });
 
-  it("does not render a GitHub link for projects where github is null", () => {
-    const nullGithubProjects = content.projects.filter((p) => !p.github);
-    if (nullGithubProjects.length > 0) {
-      render(<Projects />);
-      expect(
-        screen.queryByRole("link", { name: /github/i })
-      ).not.toBeInTheDocument();
-    }
+  it("renders GitHub links only for projects with a github url", () => {
+    render(<Projects />);
+    const withGithub = content.projects.filter((p) => p.github);
+    const links = screen.queryAllByRole("link", { name: /github/i });
+    expect(links).toHaveLength(withGithub.length);
   });
 
-  it("does not render a live site link for projects where live is null", () => {
-    const nullLiveProjects = content.projects.filter((p) => !p.live);
-    if (nullLiveProjects.length > 0) {
-      render(<Projects />);
-      expect(
-        screen.queryByRole("link", { name: /live site/i })
-      ).not.toBeInTheDocument();
-    }
+  it("renders live site links only for projects with a live url", () => {
+    render(<Projects />);
+    const withLive = content.projects.filter((p) => p.live);
+    const links = screen.queryAllByRole("link", { name: /live site/i });
+    expect(links).toHaveLength(withLive.length);
   });
 
   it("section heading says 'Things I\\'ve built'", () => {

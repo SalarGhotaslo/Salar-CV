@@ -56,7 +56,12 @@
 }
 
 .statCard {
-  @apply bg-surface border border-subtle rounded-xl p-4 text-center;
+  @apply bg-surface border border-subtle rounded-xl p-4 text-center transition-all;
+}
+.statCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .statValue {

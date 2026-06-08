@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, Geist_Mono } from "next/font/google";
 import { LazyMotion, domAnimation } from "framer-motion";
 import "./globals.css";
 import Nav from "@/components/nav";
 import ChatBot from "@/components/chatbot";
 import { content } from "@/lib/content";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const headingFont = Space_Grotesk({
+  variable: "--font-heading",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const bodyFont = Inter({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -61,12 +68,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${headingFont.variable} ${bodyFont.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-fg">
+      <body className="relative min-h-full flex flex-col bg-background text-fg">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <LazyMotion features={domAnimation}>
           <Nav />
-          {children}
+          <main id="main-content" tabIndex={-1} className="outline-none">
+            {children}
+          </main>
           <ChatBot />
         </LazyMotion>
       </body>

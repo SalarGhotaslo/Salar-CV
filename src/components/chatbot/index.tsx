@@ -115,6 +115,9 @@ export default function ChatBot() {
         {open && (
           <m.div
             key="panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Chat with AI assistant about Salar"
             initial={{ opacity: 0, y: 16, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -191,11 +194,13 @@ export default function ChatBot() {
                 onChange={(e) => setInput(e.target.value)}
                 disabled={streaming}
                 placeholder="Ask something…"
+                aria-label="Ask a question about Salar"
                 className={styles.input}
               />
               <button
                 type="submit"
                 disabled={!input.trim() || streaming}
+                aria-label="Send message"
                 className={styles.sendBtn}
               >
                 <Send size={15} />

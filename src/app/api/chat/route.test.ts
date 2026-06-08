@@ -55,7 +55,7 @@ describe("POST /api/chat", () => {
     );
     expect(res.status).toBe(502);
     const json = await res.json();
-    expect(json.error).toBe("API down");
+    expect(json.error).toBe("Something went wrong. Please try again.");
   });
 
   it("returns 502 with generic message for non-Error upstream throws", async () => {
@@ -65,7 +65,7 @@ describe("POST /api/chat", () => {
     );
     expect(res.status).toBe(502);
     const json = await res.json();
-    expect(json.error).toBe("Upstream error");
+    expect(json.error).toBe("Something went wrong. Please try again.");
   });
 
   it("returns an SSE stream with correct headers on success", async () => {
@@ -100,9 +100,10 @@ describe("POST /api/chat", () => {
     expect(sentMessages.slice(1)).toEqual(userMessages);
   });
 
-  it("accepts an empty messages array", async () => {
-    mocked.mockResolvedValueOnce(new ReadableStream());
+  it("returns 400 for an empty messages array", async () => {
     const res = await POST(makeRequest({ messages: [] }));
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(400);
+    const json = await res.json();
+    expect(json.error).toContain("No valid messages");
   });
 });

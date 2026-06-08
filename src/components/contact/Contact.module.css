@@ -30,6 +30,11 @@
 .primaryBtn:hover {
   @apply bg-accent/90;
   box-shadow: 0 0 24px rgba(124, 106, 255, 0.4);
+  transform: translateY(-1px);
+}
+.primaryBtn:focus-visible {
+  outline: 2px solid var(--accent-glow);
+  outline-offset: 2px;
 }
 
 .secondaryBtn {
@@ -37,6 +42,11 @@
 }
 .secondaryBtn:hover {
   @apply border-accent/50 bg-surface;
+  transform: translateY(-1px);
+}
+.secondaryBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .socials {
@@ -48,4 +58,9 @@
 }
 .socialLink:hover {
   @apply text-fg border-accent/40;
+  transform: translateY(-2px);
+}
+.socialLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

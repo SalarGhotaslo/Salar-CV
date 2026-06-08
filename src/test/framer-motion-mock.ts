@@ -31,14 +31,17 @@ function omitMotionProps(
 
 type AnyProps = React.PropsWithChildren<Record<string, unknown>>;
 
-const makeEl = (tag: string) =>
-  React.forwardRef<HTMLElement, AnyProps>(({ children, ...props }, ref) =>
+const makeEl = (tag: string) => {
+  const Component = React.forwardRef<HTMLElement, AnyProps>(({ children, ...props }, ref) =>
     React.createElement(
       tag,
       { ...omitMotionProps(props), ref },
       children as React.ReactNode
     )
   );
+  Component.displayName = `motion.${tag}`;
+  return Component;
+};
 
 const TAGS = [
   "a",
@@ -56,6 +59,10 @@ const TAGS = [
 
 export function buildFramerMotionMock() {
   const elements = Object.fromEntries(TAGS.map((t) => [t, makeEl(t)]));
+
+  const mockScrollVal = { get: () => 0 };
+  const mockScroll = { scrollYProgress: mockScrollVal };
+
   return {
     motion: elements,
     m: elements,
@@ -64,5 +71,8 @@ export function buildFramerMotionMock() {
     LazyMotion: ({ children }: React.PropsWithChildren) =>
       React.createElement(React.Fragment, null, children),
     domAnimation: {},
+    useScroll: () => mockScroll,
+    useSpring: (val: unknown) => val,
+    useTransform: (val: unknown) => val,
   };
 }

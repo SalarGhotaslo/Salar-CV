@@ -7,7 +7,7 @@ export const content = {
   bio: [
     "Front End Engineer and Live Service Lead specialising in React, TypeScript, and user-centric web platforms. I bring five years of hands-on engineering at Deloitte Digital, where I lead development and live-service operations on enterprise-scale public-sector systems.",
     "I thrive at the intersection of product quality and operational reliability — owning incident management, mentoring engineers, and championing continuous improvement. I care deeply about code that is maintainable, observable, and genuinely useful to the people who depend on it.",
-    "Outside of client work I explore AI agents and automation tooling, and I built this site as a side project to experiment with streaming LLMs and Next.js 15.",
+    "Outside of client work I explore AI agents and automation tooling — building this site to experiment with streaming LLMs and Next.js 15, and Talk to Me, a voice-first AI language tutor with multi-language speech recognition.",
   ],
   stats: {
     yearsOfExperience: 5,
@@ -47,6 +47,22 @@ export const content = {
       tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Framer Motion", "OpenRouter"],
       github: null,
       live: null,
+      featured: true,
+    },
+    {
+      name: "Weather App",
+      description: "A clean, responsive weather application that displays current conditions and forecasts. Fetches live weather data from a public API and presents it in an intuitive UI.",
+      tech: ["React", "TypeScript", "Weather API"],
+      github: "https://github.com/SalarGhotaslo/Weather",
+      live: "https://weather-five-plum.vercel.app/",
+      featured: true,
+    },
+    {
+      name: "Talk to Me — AI Language Tutor",
+      description: "A voice-first AI language tutor that listens via speech recognition and responds with text-to-speech. Supports English, Swedish, Farsi, Spanish, Turkish, French, and Dutch with topic-based conversation scenarios (restaurant, travel, shopping, business, etc.).",
+      tech: ["Next.js", "TypeScript", "OpenAI", "Web Speech API", "Tailwind CSS"],
+      github: "https://github.com/SalarGhotaslo/Talk_to_me",
+      live: "https://talk-to-me-woad.vercel.app/",
       featured: true,
     },
   ],
